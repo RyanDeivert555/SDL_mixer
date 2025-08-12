@@ -1,5 +1,5 @@
 .{
-    .name = .SDL_mixer,
+    .name = .sdl_mixer,
     .version = "0.0.0",
     .fingerprint = 0xa59dbd4adb1336cf, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
