@@ -1,0 +1,16 @@
+.{
+    .name = .SDL_mixer,
+    .version = "0.0.0",
+    .fingerprint = 0xa59dbd4adb1336cf, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.14.1",
+    .dependencies = .{},
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "include",
+        // For example...
+        //"LICENSE",
+        //"README.md",
+    },
+}

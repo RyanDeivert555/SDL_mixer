@@ -1,4 +1,4 @@
-build*
+build
 !build-scripts/
 aclocal.m4
 autom4te*
@@ -27,3 +27,5 @@ xcuserdata
 Xcode/build.xcconfig
 cmake-build
 buildbot
+/.zig-cache
+/zig-out
