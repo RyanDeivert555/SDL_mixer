@@ -4,10 +4,25 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const linkage = b.option(std.Build.LinkMode, "linkage", "Type of linkage") orelse .static;
+    const linkage = b.option(std.builtin.LinkMode, "linkage", "Type of linkage") orelse .static;
+
+    const mixer = b.dependency("sdl_mixer", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
+    const sdl = b.dependency("sdl", .{
+        .target = target,
+        .optimize = optimize,
+    });
 
     const lib = b.addLibrary(.{
         .name = "sdl_mixer",
+        .version = .{
+            .major = 2,
+            .minor = 8,
+            .patch = 1,
+        },
         .linkage = linkage,
         .root_module = b.createModule(.{
             .target = target,
@@ -17,10 +32,33 @@ pub fn build(b: *std.Build) void {
     });
 
     lib.addCSourceFiles(.{
-        .root = b.path("src"),
-        .files = &.{},
+        .root = mixer.path("src"),
+        .files = &.{
+            "SDL_mixer.c",
+            "SDL_mixer_metadata_tags.c",
+            "SDL_mixer_spatialization.c",
+            "decoder_aiff.c",
+            "decoder_au.c",
+            "decoder_drflac.c",
+            "decoder_drmp3.c",
+            "decoder_flac.c",
+            "decoder_fluidsynth.c",
+            "decoder_gme.c",
+            "decoder_mpg123.c",
+            "decoder_opus.c",
+            "decoder_raw.c",
+            "decoder_sinewave.c",
+            "decoder_stb_vorbis.c",
+            "decoder_timidity.c",
+            "decoder_voc.c",
+            "decoder_vorbis.c",
+            "decoder_wav.c",
+            "decoder_wavpack.c",
+            "decoder_xmp.c",
+        },
     });
-    lib.addIncludePath(b.path("include"));
+    lib.addIncludePath(mixer.path("include"));
+    lib.addIncludePath(sdl.path("include"));
 
     b.installArtifact(lib);
 }

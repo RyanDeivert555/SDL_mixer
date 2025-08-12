@@ -1,16 +1,22 @@
 .{
     .name = .sdl_mixer,
     .version = "0.0.0",
-    .fingerprint = 0xa59dbd4adb1336cf, // Changing this has security and trust implications.
+    .fingerprint = 0x11a76423c1a0b6d5, // Changing this has security and trust implications.
     .minimum_zig_version = "0.14.1",
-    .dependencies = .{},
+    .dependencies = .{
+        .sdl = .{
+            .url = "git+https://github.com/castholm/SDL.git#1994ca5dbad5a3e3c670a9ab8533d86cfd97bdc0",
+            .hash = "sdl-0.2.6+3.2.20-7uIn9NgjfwHH5a6HhyLHat2nHU3OP5B05QHhKJKuxEex",
+        },
+        .sdl_mixer = .{
+            .url = "git+https://github.com/libsdl-org/SDL_mixer.git#07dbd1a27cacd084c061e16e380dde453af01338",
+            .hash = "N-V-__8AAIi9yACqB3-AZhjvvh4iQGn-HZMgwiL1qH8oGzYR",
+        },
+    },
     .paths = .{
         "build.zig",
         "build.zig.zon",
-        "src",
-        "include",
-        // For example...
-        //"LICENSE",
-        //"README.md",
+        "LICENSE.txt",
+        "README.md",
     },
 }
