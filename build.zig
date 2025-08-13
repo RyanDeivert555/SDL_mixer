@@ -7,6 +7,11 @@ pub fn build(b: *std.Build) void {
     // TODO: add other options
     const linkage = b.option(std.builtin.LinkMode, "linkage", "Type of linkage") orelse .static;
 
+    const upstream = b.dependency("sdl_mixer", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
     const sdl = b.dependency("sdl", .{
         .target = target,
         .optimize = optimize,
@@ -28,7 +33,7 @@ pub fn build(b: *std.Build) void {
     });
 
     lib.addCSourceFiles(.{
-        .root = b.path("src"),
+        .root = upstream.path("src"),
         .files = &.{
             "SDL_mixer.c",
             "SDL_mixer_metadata_tags.c",
@@ -57,7 +62,7 @@ pub fn build(b: *std.Build) void {
         },
     });
     lib.addIncludePath(sdl.path("include"));
-    lib.addIncludePath(b.path("include"));
+    lib.addIncludePath(upstream.path("include"));
 
     b.installArtifact(lib);
 }

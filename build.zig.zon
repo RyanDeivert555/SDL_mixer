@@ -8,12 +8,14 @@
             .url = "git+https://github.com/libsdl-org/SDL.git#10478c59dbcabf349d06166b3c4e98a2d602b3fa",
             .hash = "N-V-__8AAJPDqwPexsjm6hvIw2FXelIY4OCDZNT_FuKhsy39",
         },
+        .sdl_mixer = .{
+            .url = "git+https://github.com/libsdl-org/SDL_mixer#07dbd1a27cacd084c061e16e380dde453af01338",
+            .hash = "N-V-__8AAIi9yACqB3-AZhjvvh4iQGn-HZMgwiL1qH8oGzYR",
+        },
     },
     .paths = .{
         "build.zig",
         "build.zig.zon",
-        "src",
-        "include",
         "LICENSE.txt",
         "README.md",
     },
