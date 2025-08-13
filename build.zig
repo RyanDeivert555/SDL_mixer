@@ -4,6 +4,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    // TODO: add other options
     const linkage = b.option(std.builtin.LinkMode, "linkage", "Type of linkage") orelse .static;
 
     const mixer = b.dependency("sdl_mixer", .{
@@ -56,9 +57,12 @@ pub fn build(b: *std.Build) void {
             "decoder_wavpack.c",
             "decoder_xmp.c",
         },
+        .flags = &.{
+            "-std=c99",
+        },
     });
-    lib.addIncludePath(mixer.path("include"));
     lib.addIncludePath(sdl.path("include"));
+    lib.addIncludePath(mixer.path("include"));
 
     b.installArtifact(lib);
 }
